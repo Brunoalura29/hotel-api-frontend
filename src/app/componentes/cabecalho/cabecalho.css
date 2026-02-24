@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+}
+
+.banner-cabecalho {
+  width: 100%;
+  overflow: hidden;
+}
+
+.cabecalho img,
+.banner-cabecalho img {
+  width: 100%;
+  display: block;
+}
