@@ -1,14 +1,12 @@
-body {
-  margin: 0;
-}
-
-.banner-cabecalho {
+.cabecalho {
   width: 100%;
+  height: 430px; /* 🔥 controla a altura aqui */
   overflow: hidden;
 }
 
-.cabecalho img,
-.banner-cabecalho img {
+.cabecalho img {
   width: 100%;
+  height: 100%;
+  object-fit: cover; /* 🔥 mantém proporção e corta excesso */
   display: block;
 }
