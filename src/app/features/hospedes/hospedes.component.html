@@ -17,13 +17,6 @@
     <input type="text" formControlName="telefone">
   </div>
 
-  <div>
-  <label>
-    <input type="checkbox" formControlName="temCarro">
-    Possui carro?
-  </label>
-</div>
-
   <button type="submit" [disabled]="formulario.invalid">
     Cadastrar
   </button>
@@ -32,11 +25,22 @@
 
 <hr>
 
-<h2>Lista de Hóspedes</h2>
+<button type="button" (click)="toggleLista()">
+  {{ mostrarLista ? 'Ocultar Lista' : 'Mostrar Lista de Hóspedes' }}
+</button>
 
-<ul>
-  <li *ngFor="let hospede of hospedes">
-    {{ hospede.nome }} - {{ hospede.documento }} - {{ hospede.telefone }} - 
-  {{ hospede.temCarro ? 'Com carro' : 'Sem carro' }}
-  </li>
-</ul>
+<div *ngIf="mostrarLista">
+
+  <h2>Lista de Hóspedes</h2>
+
+  <ul>
+    <li *ngFor="let hospede of hospedes">
+      {{ hospede.nome }} - 
+      {{ hospede.documento }} - 
+      {{ hospede.telefone }} - 
+    </li>
+  </ul>
+
+</div>
+
+<button routerLink="/reservas">Criar Reserva</button>

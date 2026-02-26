@@ -1,0 +1,26 @@
+<h2>Nova Reserva</h2>
+
+<form [formGroup]="formulario" (ngSubmit)="cadastrar()">
+
+  <label>Hóspede</label>
+<select formControlName="hospedeId">
+  <option value="">Selecione um hóspede</option>
+  <option *ngFor="let h of hospedes" [value]="h.id">
+    {{ h.nome }} - {{ h.documento }}
+  </option>
+</select>
+
+  <label>Data Entrada</label>
+  <input type="datetime-local" formControlName="dataEntradaPrevista">
+
+  <label>Data Saída</label>
+  <input type="datetime-local" formControlName="dataSaidaPrevista">
+
+  <label>
+    <input type="checkbox" formControlName="usaVaga">
+    Usa vaga de garagem
+  </label>
+
+  <button type="submit">Reservar</button>
+
+</form>

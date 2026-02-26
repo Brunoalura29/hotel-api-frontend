@@ -29,7 +29,4 @@ export class HospedeService {
     return this.http.put<Hospede>(`${this.apiUrl}/${id}`, hospede);
   }
 
-  deletar(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
 }

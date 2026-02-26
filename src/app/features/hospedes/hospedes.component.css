@@ -94,3 +94,7 @@ li {
   border-left: 4px solid #3498db;
   font-size: 14px;
 }
+
+div {
+  transition: all 0.3s ease;
+}

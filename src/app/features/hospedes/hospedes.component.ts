@@ -4,11 +4,12 @@ import { HospedeService } from '../../core/services/hospede.service';
 import { Hospede } from '../../core/models/hospede.model';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-hospedes',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './hospedes.component.html',
   styleUrls: ['./hospedes.component.css']
 })
@@ -36,6 +37,11 @@ export class HospedesComponent implements OnInit {
     });
   }
 
+  mostrarLista: boolean = false;
+  toggleLista() {
+  this.mostrarLista = !this.mostrarLista;
+}
+
   listarHospedes() {
     this.hospedeService.listar().subscribe(dados => {
       this.hospedes = dados;
@@ -51,7 +57,7 @@ export class HospedesComponent implements OnInit {
             this.formulario.reset({
             temCarro: false
             });     
-            this.listarHospedes(); // 🔥 Atualiza lista automaticamente
+            this.listarHospedes(); //  Atualiza lista automaticamente
           },
           error: () => {
             alert('Erro ao cadastrar.');
