@@ -5,6 +5,7 @@ import { Hospede } from '../../core/models/hospede.model';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hospedes',
@@ -19,6 +20,7 @@ export class HospedesComponent implements OnInit {
   formulario!: FormGroup;
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private hospedeService: HospedeService
   ) {}
@@ -65,4 +67,8 @@ export class HospedesComponent implements OnInit {
         });
     }
   }
+  
+irParaCheckin(id: number) {
+  this.router.navigate(['/checkin', id]);
+}
 }

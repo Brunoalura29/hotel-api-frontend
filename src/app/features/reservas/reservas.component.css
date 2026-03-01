@@ -1,0 +1,96 @@
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ===== FORM GRID ===== */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 150px 250px;
+  gap: 15px 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-grid label {
+  text-align: right;
+  font-weight: 500;
+}
+
+.form-grid input,
+.form-grid select {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.form-grid button {
+  grid-column: 2;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== CARDS ===== */
+
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.info h3 {
+  margin: 0;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.reservado {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.checkin {
+  background: #d4edda;
+  color: #155724;
+}
+
+button {
+  padding: 8px 15px;
+  border-radius: 6px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

@@ -29,6 +29,8 @@
   {{ mostrarLista ? 'Ocultar Lista' : 'Mostrar Lista de Hóspedes' }}
 </button>
 
+<button routerLink="/reservas">Criar Reserva</button>
+
 <div *ngIf="mostrarLista">
 
   <h2>Lista de Hóspedes</h2>
@@ -38,9 +40,14 @@
       {{ hospede.nome }} - 
       {{ hospede.documento }} - 
       {{ hospede.telefone }} - 
+
+      <button (click)="irParaCheckin(hospede.id)">
+  Fazer Check-in
+</button>
     </li>
   </ul>
 
 </div>
 
-<button routerLink="/reservas">Criar Reserva</button>
+
+

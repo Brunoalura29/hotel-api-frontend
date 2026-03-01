@@ -12,6 +12,10 @@ export class ReservaService {
 
   constructor(private http: HttpClient) {}
 
+  checkin(reservaId: number) {
+  return this.http.put(`http://localhost:8080/api/ops/checkin/${reservaId}`, {});
+}
+
   criar(reserva: Reserva): Observable<Reserva> {
     return this.http.post<Reserva>(this.api, reserva);
   }

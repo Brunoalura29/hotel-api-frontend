@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReservaService } from '../../core/services/reserva.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HospedeService } from '../../core/services/hospede.service';
 import { Hospede } from '../../core/models/hospede.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reserva',
@@ -13,15 +14,17 @@ import { Hospede } from '../../core/models/hospede.model';
   templateUrl: './reservas.component.html',
   styleUrls: ['./reservas.component.css']
 })
-export class ReservaComponent {
+export class ReservaComponent implements OnInit{
 
   formulario!: FormGroup;
   hospedes: Hospede[] = [];
+  reservas: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private reservaService: ReservaService,
-    private hospedeService: HospedeService
+    private hospedeService: HospedeService,
+    private router: Router
   ) {}
 
    ngOnInit(): void {
@@ -30,16 +33,27 @@ export class ReservaComponent {
       hospedeId: ['', Validators.required],
       dataEntradaPrevista: ['', Validators.required],
       dataSaidaPrevista: ['', Validators.required],
-      usaVaga: [false]
+      usaVaga: [false],
     });
 
     this.carregarHospedes(); 
+    this.carregarReservas();
   }
-    carregarHospedes() {
+   carregarHospedes() {
   this.hospedeService.listar().subscribe((dados) => {
-    this.hospedes = dados;
+
+    this.hospedes = dados.sort((a, b) =>
+      a.nome.localeCompare(b.nome, 'pt-BR', { sensitivity: 'base' })
+    );
+
   });
 
+  }
+   carregarReservas() {
+    this.reservaService.buscarPorStatus('RESERVADO')
+      .subscribe((dados) => {
+        this.reservas = dados;
+      });
   }
 
   cadastrar() {
@@ -49,6 +63,7 @@ export class ReservaComponent {
           next: () => {
             alert('Reserva criada com sucesso!');
             this.formulario.reset();
+            this.carregarReservas();
           },
           error: (err: any) => {
             alert(err.error.message || 'Erro ao criar reserva');
@@ -56,5 +71,12 @@ export class ReservaComponent {
         });
     }
   }
+  irParaCheckin(id: number) {
+  this.router.navigate(['/checkin', id]);
+}
+
+voltar() {
+  this.router.navigate(['/hospedes']);
+}
   
 }

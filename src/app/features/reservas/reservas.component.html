@@ -1,14 +1,22 @@
-<h2>Nova Reserva</h2>
+<button type="button" (click)="voltar()">
+  ← Voltar para Cadastro de Hóspede
+</button>
 
-<form [formGroup]="formulario" (ngSubmit)="cadastrar()">
+<div class="container">
+
+  <h2>Nova Reserva</h2>
+
+<form [formGroup]="formulario" 
+      (ngSubmit)="cadastrar()" 
+      class="form-card form-grid">
 
   <label>Hóspede</label>
-<select formControlName="hospedeId">
-  <option value="">Selecione um hóspede</option>
-  <option *ngFor="let h of hospedes" [value]="h.id">
-    {{ h.nome }} - {{ h.documento }}
-  </option>
-</select>
+  <select formControlName="hospedeId">
+    <option value="">Selecione</option>
+    <option *ngFor="let h of hospedes" [value]="h.id">
+      {{ h.nome }}
+    </option>
+  </select>
 
   <label>Data Entrada</label>
   <input type="datetime-local" formControlName="dataEntradaPrevista">
@@ -16,11 +24,34 @@
   <label>Data Saída</label>
   <input type="datetime-local" formControlName="dataSaidaPrevista">
 
-  <label>
-    <input type="checkbox" formControlName="usaVaga">
-    Usa vaga de garagem
-  </label>
+  <label>Usa vaga de estacionamento</label>
+  <input type="checkbox" formControlName="usaVaga">
 
-  <button type="submit">Reservar</button>
-
+  <div></div>
+  <button type="submit">Cadastrar Reserva</button>
 </form>
+
+<hr>
+
+<h2>Reservas</h2>
+
+  <div class="card" *ngFor="let reserva of reservas">
+
+    <div>
+      <strong>{{ reserva.hospede.nome }}</strong><br>
+      Entrada: {{ reserva.dataEntradaPrevista | date:'dd/MM/yyyy' }}<br>
+      Saída: {{ reserva.dataSaidaPrevista | date:'dd/MM/yyyy' }}<br>
+      Status: {{ reserva.status }}
+    </div>
+
+    <div>
+      <button 
+        *ngIf="reserva.status === 'RESERVADO'"
+        (click)="irParaCheckin(reserva.id)">
+        Fazer Check-in
+      </button>
+    </div>
+
+  </div>
+
+</div>
