@@ -18,7 +18,8 @@ export class ReservaComponent implements OnInit{
 
   formulario!: FormGroup;
   hospedes: Hospede[] = [];
-  reservas: any[] = [];
+  reservados: any[] = [];
+  hospedados: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +40,7 @@ export class ReservaComponent implements OnInit{
     this.carregarHospedes(); 
     this.carregarReservas();
   }
+
    carregarHospedes() {
   this.hospedeService.listar().subscribe((dados) => {
 
@@ -49,12 +51,19 @@ export class ReservaComponent implements OnInit{
   });
 
   }
-   carregarReservas() {
-    this.reservaService.buscarPorStatus('RESERVADO')
-      .subscribe((dados) => {
-        this.reservas = dados;
-      });
-  }
+
+  carregarReservas() {
+
+  this.reservaService.buscarPorStatus('RESERVADO')
+    .subscribe((dados: any[]) => {
+      this.reservados = dados;
+    });
+
+  this.reservaService.buscarPorStatus('CHECKED_IN')
+    .subscribe((dados: any[]) => {
+      this.hospedados = dados;
+    });
+}
 
   cadastrar() {
     if (this.formulario.valid) {
@@ -77,6 +86,10 @@ export class ReservaComponent implements OnInit{
 
 voltar() {
   this.router.navigate(['/hospedes']);
+}
+
+irParaCheckout(id: number) {
+  this.router.navigate(['/checkout', id]);
 }
   
 }

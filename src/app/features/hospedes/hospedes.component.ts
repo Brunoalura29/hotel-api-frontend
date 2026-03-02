@@ -59,7 +59,7 @@ export class HospedesComponent implements OnInit {
             this.formulario.reset({
             temCarro: false
             });     
-            this.listarHospedes(); //  Atualiza lista automaticamente
+            this.listarHospedes(); 
           },
           error: () => {
             alert('Erro ao cadastrar.');

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ReservaService } from '../../core/services/reserva.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-checkin',
@@ -22,7 +23,8 @@ export class CheckinComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private reservaService: ReservaService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
     ngOnInit() {
@@ -34,7 +36,7 @@ export class CheckinComponent implements OnInit{
     .subscribe({
       next: () => {
         alert('Check-in realizado com sucesso!');
-        this.router.navigate(['/hospedes']);
+        this.router.navigate(['/reservas']);
       },
       error: (err) => {
         alert(err.error?.message || 'Erro ao realizar check-in');
@@ -42,4 +44,7 @@ export class CheckinComponent implements OnInit{
     });
 
   }
+  voltar() {
+  this.location.back();
+}
 }

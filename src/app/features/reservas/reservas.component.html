@@ -32,26 +32,41 @@
 </form>
 
 <hr>
-
 <h2>Reservas</h2>
 
-  <div class="card" *ngFor="let reserva of reservas">
+<div class="card" *ngFor="let reserva of reservados">
 
-    <div>
-      <strong>{{ reserva.hospede.nome }}</strong><br>
-      Entrada: {{ reserva.dataEntradaPrevista | date:'dd/MM/yyyy' }}<br>
-      Saída: {{ reserva.dataSaidaPrevista | date:'dd/MM/yyyy' }}<br>
-      Status: {{ reserva.status }}
-    </div>
+  <div>
+    <strong>{{ reserva.hospede.nome }}</strong><br>
+    Entrada: {{ reserva.dataEntradaPrevista | date:'dd/MM/yyyy' }}<br>
+    Saída: {{ reserva.dataSaidaPrevista | date:'dd/MM/yyyy' }}<br>
+    Status: {{ reserva.status }}
+  </div>
 
-    <div>
-      <button 
-        *ngIf="reserva.status === 'RESERVADO'"
-        (click)="irParaCheckin(reserva.id)">
-        Fazer Check-in
-      </button>
-    </div>
+  <div>
+    <button (click)="irParaCheckin(reserva.id)">
+      Fazer Check-in
+    </button>
+  </div>
 
+</div>
+
+
+<hr>
+<h2>Hospedados</h2>
+
+<div class="card" *ngFor="let reserva of hospedados">
+
+  <div>
+    <strong>{{ reserva.hospede.nome }}</strong><br>
+    Check-in: {{ reserva.dataCheckin | date:'dd/MM/yyyy HH:mm' }}<br>
+    Status: {{ reserva.status }}
+  </div>
+
+  <div>
+    <button (click)="irParaCheckout(reserva.id)">
+      Fazer Checkout
+    </button>
   </div>
 
 </div>

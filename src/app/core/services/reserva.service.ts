@@ -23,4 +23,13 @@ export class ReservaService {
   buscarPorStatus(status: string): Observable<Reserva[]> {
     return this.http.get<Reserva[]>(`${this.api}/status/${status}`);
   }
+
+  checkout(id: number) {
+  return this.http.put<any>(`http://localhost:8080/api/ops/checkout/${id}`, {});
+}
+
+buscarPorId(id: number) {
+  return this.http.get<any>(`${this.api}/${id}`);
+}
+
 }

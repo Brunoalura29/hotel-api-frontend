@@ -1,0 +1,34 @@
+<button (click)="voltar()">Voltar</button>
+
+<h2>Confirmar Checkout</h2>
+
+<div *ngIf="reserva as r" class="card">
+
+  <p><strong>Hóspede:</strong> {{ r.hospede?.nome }}</p>
+  <p><strong>Check-in:</strong> {{ r.dataCheckin | date:'dd/MM/yyyy HH:mm' }}</p>
+  <p><strong>Status:</strong> {{ r.status }}</p>
+
+  <hr>
+
+  <button 
+  *ngIf="reserva?.status === 'CHECKED_IN'"
+  [disabled]="loading"
+  (click)="confirmarCheckout()">
+  Confirmar Checkout
+</button>
+
+</div>
+
+<div *ngIf="resultado as res" class="card">
+
+  <h3>Resumo do Pagamento</h3>
+
+  <p>Diárias: {{ res.valorDiarias | currency:'BRL' }}</p>
+  <p>Estacionamento: {{ res.valorEstacionamento | currency:'BRL' }}</p>
+  <p>Atraso: {{ res.valorAtraso | currency:'BRL' }}</p>
+
+  <hr>
+
+  <h3>Total: {{ res.valorTotal | currency:'BRL' }}</h3>
+
+</div>
