@@ -67,7 +67,15 @@ export class ReservaComponent implements OnInit{
 
   cadastrar() {
     if (this.formulario.valid) {
-      this.reservaService.criar(this.formulario.value)
+     
+      const formValue = this.formulario.value;
+    const reserva = {
+      ...formValue,
+      dataEntradaPrevista: formValue.dataEntradaPrevista + 'T14:00:00',
+      dataSaidaPrevista: formValue.dataSaidaPrevista + 'T12:00:00'
+    };
+
+      this.reservaService.criar(reserva)
         .subscribe({
           next: () => {
             alert('Reserva criada com sucesso!');
